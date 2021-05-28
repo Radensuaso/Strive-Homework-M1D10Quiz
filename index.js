@@ -98,22 +98,21 @@ const mainQuestionsContainer = document.querySelector(
   "#main-questions-container"
 )
 
-window.onload = function () {
-  createQuestionContainers()
+window.onload = function () {}
+
+// create every question container
+for (const questionObj of questions) {
+  const questionContainer = document.createElement("div") // creating an element for every question in the questions object
+  questionContainer.classList.add("question-containers") // adding a class to every container
+
+  mainQuestionsContainer.appendChild(questionContainer) //append the containers to the main-question-container
 }
 
-// Function to create every question container
-const createQuestionContainers = () => {
-  for (const questionObj of questions) {
-    const questionContainer = document.createElement("div") // creating an element for every question in the questions object
-    questionContainer.classList.add("question-containers") // adding a class to every container
+// variable that holds the question-containers array
 
-    mainQuestionsContainer.appendChild(questionContainer)
-  }
+const questionContainersList = document.querySelectorAll(".question-containers")
 
-  /* const questionContainer = document.querySelectorAll(".question-container")
-  
-
+/*
   for (const questionObj of questions) {
     const categoryH3 = (document.createElement("h3").innerText =
       questionObj.category) // creating h3 element with category of the question
@@ -122,21 +121,23 @@ const createQuestionContainers = () => {
 
     questionContainer.appendChild(categoryH3)
     questionContainer.appendChild(questionH2)
-  }*/
+  }
+*/
+
+// create and append the questions to the containers
+for (let i = 0; i < questions.length; i++) {
+  const categoryH3 = document.createElement("h3")
+  categoryH3.innerText = "Category: " + questions[i].category // creating h3 element with category of the question
+  const questionH2 = document.createElement("h2")
+  questionH2.innerHTML = "Question: " + questions[i].question // creating h2 element with the question
+
+  questionContainersList[i].appendChild(categoryH3)
+  questionContainersList[i].appendChild(questionH2)
 }
-
-// variable that holds the question-containers array
-
-const questionContainers = document.querySelectorAll(".question-containers")
-
-console.log(questionContainers)
-
-// function to append the questions to the containers
-/* const appendQuestionsToTheContainers = () => {}
 
 // function to display one question at a time
 
-const displayQuestion = () => {} */
+const displayQuestion = () => {}
 
 // IF YOU ARE DISPLAYING ALL THE QUESTIONS AT ONCE:
 // HINT: for each question, create a container with the "question"
