@@ -128,6 +128,9 @@ const mainQuestionsContainer = document.querySelector(
   "#main-questions-container"
 )
 
+// User Score
+let score = 0
+
 window.onload = function () {}
 
 // create every question container
@@ -155,16 +158,31 @@ for (let i = 0; i < questions.length; i++) {
 }
 
 // create and append radio buttons
+const formList = document.querySelectorAll("form")
 
 for (let i = 0; i < questions.length; i++) {
   for (let j = 0; j < questions[i].answers.length; j++) {
     const radioButton = `<input type="radio" id=${
-      questions[i].questionId + i
-    } name=${questions[i].questionId} value=${questions[i].answers[j]}>
-    <label for=${questions[i].questionId}>${questions[i].answers[j]}</label>`
+      questions[i].questionId + j
+    } name=${questions[i].questionId}>
+    <label for=${questions[i].questionId}>${questions[i].answers[j]}</label>` // This is what will change the html of the forms
 
-    document.querySelectorAll("form")[i].innerHTML += radioButton
+    formList[i].innerHTML += radioButton
   }
+}
+
+//Get final score
+
+const getFinalScore = () => {
+  for (let i = 0; i < formList.length; i++) {
+    const listOfNodesChildrenOfForm = formList[i].childNodes
+    if (
+      listOfNodesChildrenOfForm[listOfNodesChildrenOfForm.length - 3].checked
+    ) {
+      score++
+    }
+  }
+  alert(`You got ${score} out of ${questions.length}`)
 }
 
 // IF YOU ARE DISPLAYING ALL THE QUESTIONS AT ONCE:
