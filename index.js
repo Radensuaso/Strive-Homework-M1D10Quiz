@@ -131,9 +131,7 @@ const mainQuestionsContainer = document.querySelector(
 // User Score
 let score = 0
 
-window.onload = function () {
-  questionContainersList[0].style.display = "block"
-}
+window.onload = function () {}
 
 // create every question container
 
@@ -210,6 +208,9 @@ for (let i = 0; i < radioAndLabelsButtonsArray.length; i++) {
   }
 }
 
+//Display the first question container
+questionContainersList[0].style.display = "block"
+
 // function to display one question ate a time
 
 const displayOneAtTime = () => {
@@ -226,6 +227,7 @@ const displayOneAtTime = () => {
   }
 }
 
+console.log(radioAndLabelsButtonsArray)
 // IF YOU ARE DISPLAYING ALL THE QUESTIONS AT ONCE:
 // HINT: for each question, create a container with the "question"
 // create a radio button https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio with, as option the both the correct answer and the incorrect answers
