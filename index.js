@@ -131,7 +131,9 @@ const mainQuestionsContainer = document.querySelector(
 // User Score
 let score = 0
 
-window.onload = function () {}
+window.onload = function () {
+  questionContainersList[0].style.display = "block"
+}
 
 // create every question container
 
@@ -211,7 +213,17 @@ for (let i = 0; i < radioAndLabelsButtonsArray.length; i++) {
 // function to display one question ate a time
 
 const displayOneAtTime = () => {
-  for (let i = 0; i < questionContainersList.length; i++) {}
+  for (let i = 0; i < questionContainersList.length; i++) {
+    if (questionContainersList[i].style.display === "block") {
+      questionContainersList[i].style.display = "none"
+      if (i === questionContainersList.length - 1) {
+        console.log("your score is:")
+      } else {
+        questionContainersList[i + 1].style.display = "block"
+      }
+      break
+    }
+  }
 }
 
 // IF YOU ARE DISPLAYING ALL THE QUESTIONS AT ONCE:
