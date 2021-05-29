@@ -11,12 +11,6 @@ const questions = [
       "Computer Personal Unit",
       "Central Processor Unit",
     ],
-    answers: [
-      "Central Process Unit",
-      "Computer Personal Unit",
-      "Central Processor Unit",
-      "Central Processing Unit",
-    ],
   },
   {
     class: "b",
@@ -27,7 +21,6 @@ const questions = [
       "In the programming language Java, which of these keywords would you put on a variable to make sure it doesn't get modified?",
     correct_answer: "Final",
     incorrect_answers: ["Static", "Private", "Public"],
-    answers: ["Static", "Private", "Public", "Final"],
   },
   {
     class: "c",
@@ -37,7 +30,6 @@ const questions = [
     question: "The logo for Snapchat is a Bell.",
     correct_answer: "False",
     incorrect_answers: ["True"],
-    answers: ["True", "False"],
   },
   {
     class: "d",
@@ -48,7 +40,6 @@ const questions = [
       "Pointers were not used in the original C programming language; they were added later on in C++.",
     correct_answer: "False",
     incorrect_answers: ["True"],
-    answers: ["True", "False"],
   },
   {
     class: "e",
@@ -59,7 +50,6 @@ const questions = [
       "What is the most preferred image format used for logos in the Wikimedia database?",
     correct_answer: ".svg",
     incorrect_answers: [".png", ".jpeg", ".gif"],
-    answers: [".png", ".jpeg", ".gif", ".svg"],
   },
   {
     class: "f",
@@ -73,12 +63,6 @@ const questions = [
       "Corrective Style Sheet",
       "Computer Style Sheet",
     ],
-    answers: [
-      "Counter Strike: Source",
-      "Corrective Style Sheet",
-      "Computer Style Sheet",
-      "Cascading Style Sheet",
-    ],
   },
   {
     class: "g",
@@ -89,7 +73,6 @@ const questions = [
       "What is the code name for the mobile operating system Android 7.0?",
     correct_answer: "Nougat",
     incorrect_answers: ["Ice Cream Sandwich", "Jelly Bean", "Marshmallow"],
-    answers: ["Ice Cream Sandwich", "Jelly Bean", "Marshmallow", "Nougat"],
   },
   {
     class: "h",
@@ -99,7 +82,6 @@ const questions = [
     question: "On Twitter, what is the character limit for a Tweet?",
     correct_answer: "140",
     incorrect_answers: ["120", "160", "100"],
-    answers: ["120", "160", "100", "140"],
   },
   {
     class: "i",
@@ -109,7 +91,6 @@ const questions = [
     question: "Linux was first created as an alternative to Windows XP.",
     correct_answer: "False",
     incorrect_answers: ["True"],
-    answers: ["True", "False"],
   },
   {
     class: "j",
@@ -120,7 +101,6 @@ const questions = [
       "Which programming language shares its name with an island in Indonesia?",
     correct_answer: "Java",
     incorrect_answers: ["Python", "C", "Jakarta"],
-    answers: ["Python", "C", "Jakarta", "Java"],
   },
 ]
 
@@ -174,15 +154,27 @@ for (let i = 0; i < questions.length; i++) {
     labels: [],
   }
 
-  for (let j = 0; j < questions[i].answers.length; j++) {
+  const createdCorrectInput = document.createElement("input") //create the input to be pushed
+  createdCorrectInput.type = "radio"
+  createdCorrectInput.id = questions[i].class + 0
+  createdCorrectInput.name = questions[i].class
+
+  const createdCorrectLabel = document.createElement("label") //create the label for each input
+  createdCorrectLabel.htmlFor = questions[i].class
+  createdCorrectLabel.innerText = questions[i].correct_answer
+
+  objectOfWithRadioButtonsToBePushed.radioButtons.push(createdCorrectInput) // push the nodes inside the respective arrays
+  objectOfWithRadioButtonsToBePushed.labels.push(createdCorrectLabel)
+
+  for (let j = 0; j < questions[i].incorrect_answers.length; j++) {
     const createdInput = document.createElement("input") //create the input to be pushed
     createdInput.type = "radio"
-    createdInput.class = questions[i].class
-    createdInput.id = questions[i].class + j
+    createdInput.id = questions[i].class + (j + 1)
+    createdInput.name = questions[i].class
 
     const createdLabel = document.createElement("label") //create the label for each input
-    createdLabel.htmlFor = questions[i].class + j
-    createdLabel.innerText = questions[i].answers[j]
+    createdLabel.htmlFor = questions[i].class
+    createdLabel.innerText = questions[i].incorrect_answers[j]
 
     objectOfWithRadioButtonsToBePushed.radioButtons.push(createdInput) // push the nodes inside the respective arrays
     objectOfWithRadioButtonsToBePushed.labels.push(createdLabel)
@@ -218,7 +210,8 @@ const displayOneAtTime = () => {
     if (questionContainersList[i].style.display === "block") {
       questionContainersList[i].style.display = "none"
       if (i === questionContainersList.length - 1) {
-        console.log("your score is:")
+        document.querySelector("#next").style.display = "none"
+        document.querySelector("#submit").style.display = "block"
       } else {
         questionContainersList[i + 1].style.display = "block"
       }
@@ -227,6 +220,20 @@ const displayOneAtTime = () => {
   }
 }
 
+// get final score
+
+const getFinalScore = () => {
+  for (const radioAndLabelObj of radioAndLabelsButtonsArray) {
+    if (radioAndLabelObj.radioButtons[0].checked) {
+      score++
+    }
+  }
+  console.log(score)
+  const finalScore = document.createElement("h2")
+  finalScore.innerText = `Your Score is ${score} out of ${questions.length}.`
+
+  document.querySelector("#main-questions-container").appendChild(finalScore)
+}
 // IF YOU ARE DISPLAYING ALL THE QUESTIONS AT ONCE:
 // HINT: for each question, create a container with the "question"
 // create a radio button https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio with, as option the both the correct answer and the incorrect answers

@@ -41,11 +41,23 @@
     <header>
       <h1>Quiz Game</h1>
     </header>
-    <div>
+    <main>
       <div id="main-questions-container"></div>
-
-      <input type="button" value="Submit" onclick="displayOneAtTime()" />
-    </div>
+      <div id="buttons-container">
+        <input
+          id="next"
+          type="button"
+          value="Next"
+          onclick="displayOneAtTime()"
+        />
+        <input
+          id="submit"
+          type="button"
+          value="Submit"
+          onclick="getFinalScore()"
+        />
+      </div>
+    </main>
     <script src="index.js"></script>
   </body>
 </html>

@@ -1,3 +1,38 @@
+body {
+  background-color: burlywood;
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+  font-size: 4em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+main {
+  background-color: cornsilk;
+  width: 60%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
 .question-containers {
   display: none;
+}
+
+#submit {
+  display: none;
+}
+
+.question-containers input {
+  margin-left: 30px;
+}
+
+#buttons-container input {
+  margin: 30px auto;
 }
