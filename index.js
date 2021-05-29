@@ -177,11 +177,11 @@ for (let i = 0; i < questions.length; i++) {
   for (let j = 0; j < questions[i].answers.length; j++) {
     const createdInput = document.createElement("input") //create the input to be pushed
     createdInput.type = "radio"
-    createdInput.name = questions[i].class
+    createdInput.class = questions[i].class
     createdInput.id = questions[i].class + j
 
     const createdLabel = document.createElement("label") //create the label for each input
-    createdLabel.htmlFor = questions[i].class
+    createdLabel.htmlFor = questions[i].class + j
     createdLabel.innerText = questions[i].answers[j]
 
     objectOfWithRadioButtonsToBePushed.radioButtons.push(createdInput) // push the nodes inside the respective arrays
@@ -227,7 +227,6 @@ const displayOneAtTime = () => {
   }
 }
 
-console.log(radioAndLabelsButtonsArray)
 // IF YOU ARE DISPLAYING ALL THE QUESTIONS AT ONCE:
 // HINT: for each question, create a container with the "question"
 // create a radio button https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio with, as option the both the correct answer and the incorrect answers
