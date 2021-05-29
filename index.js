@@ -1,6 +1,6 @@
 const questions = [
   {
-    questionClass: "a",
+    class: "a",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -19,7 +19,7 @@ const questions = [
     ],
   },
   {
-    questionClass: "b",
+    class: "b",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -30,7 +30,7 @@ const questions = [
     answers: ["Static", "Private", "Public", "Final"],
   },
   {
-    questionClass: "c",
+    class: "c",
     category: "Science: Computers",
     type: "boolean",
     difficulty: "easy",
@@ -40,7 +40,7 @@ const questions = [
     answers: ["True", "False"],
   },
   {
-    questionClass: "d",
+    class: "d",
     category: "Science: Computers",
     type: "boolean",
     difficulty: "easy",
@@ -51,7 +51,7 @@ const questions = [
     answers: ["True", "False"],
   },
   {
-    questionClass: "e",
+    class: "e",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -62,7 +62,7 @@ const questions = [
     answers: [".png", ".jpeg", ".gif", ".svg"],
   },
   {
-    questionClass: "f",
+    class: "f",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -81,7 +81,7 @@ const questions = [
     ],
   },
   {
-    questionClass: "g",
+    class: "g",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -92,7 +92,7 @@ const questions = [
     answers: ["Ice Cream Sandwich", "Jelly Bean", "Marshmallow", "Nougat"],
   },
   {
-    questionClass: "h",
+    class: "h",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -102,7 +102,7 @@ const questions = [
     answers: ["120", "160", "100", "140"],
   },
   {
-    questionClass: "i",
+    class: "i",
     category: "Science: Computers",
     type: "boolean",
     difficulty: "easy",
@@ -112,7 +112,7 @@ const questions = [
     answers: ["True", "False"],
   },
   {
-    questionClass: "j",
+    class: "j",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -168,22 +168,32 @@ const radioButtonsArray = []
 
 const createRadioButtons = () => {
   for (let i = 0; i < questions.length; i++) {
-    for (let j = 0; j < questions[i].answers.length; j++) {}
+    let objectOfWithRadioButtonsToBePushed = {
+      // initialize the object to be pushed
+      questionClass: questions[i].class,
+      radioButtons: [],
+      labels: [],
+    }
+
+    for (let j = 0; j < questions[i].answers.length; j++) {
+      const createdInput = document.createElement("input") //create the input to be pushed
+      createdInput.type = "radio"
+      createdInput.name = questions[i].class
+
+      const createdLabel = document.createElement("label") //create the label for each input
+      createdLabel.for = questions[i].class
+      createdLabel.innerText = questions[i].answers[j]
+
+      objectOfWithRadioButtonsToBePushed.radioButtons.push(createdInput) //push the radios and labels to the previous generated object
+      objectOfWithRadioButtonsToBePushed.labels.push(createdLabel)
+    }
+
+    radioButtonsArray.push(objectOfWithRadioButtonsToBePushed)
   }
 }
 
-/*
-for (let i = 0; i < questions.length; i++) {
-  for (let j = 0; j < questions[i].answers.length; j++) {
-    const radioButton = `<input type="radio" id=${
-      questions[i].questionId + j
-    } name=${questions[i].questionId}>
-    <label for=${questions[i].questionId}>${questions[i].answers[j]}</label>` // This is what will change the html of the forms
+createRadioButtons()
 
-    formList[i].innerHTML += radioButton
-  }
-}
-*/
 //Get final score
 
 /*
