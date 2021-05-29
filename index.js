@@ -1,6 +1,6 @@
 const questions = [
   {
-    questionId: "a",
+    questionClass: "a",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -19,7 +19,7 @@ const questions = [
     ],
   },
   {
-    questionId: "b",
+    questionClass: "b",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -30,7 +30,7 @@ const questions = [
     answers: ["Static", "Private", "Public", "Final"],
   },
   {
-    questionId: "c",
+    questionClass: "c",
     category: "Science: Computers",
     type: "boolean",
     difficulty: "easy",
@@ -40,7 +40,7 @@ const questions = [
     answers: ["True", "False"],
   },
   {
-    questionId: "d",
+    questionClass: "d",
     category: "Science: Computers",
     type: "boolean",
     difficulty: "easy",
@@ -51,7 +51,7 @@ const questions = [
     answers: ["True", "False"],
   },
   {
-    questionId: "e",
+    questionClass: "e",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -62,7 +62,7 @@ const questions = [
     answers: [".png", ".jpeg", ".gif", ".svg"],
   },
   {
-    questionId: "f",
+    questionClass: "f",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -81,7 +81,7 @@ const questions = [
     ],
   },
   {
-    questionId: "g",
+    questionClass: "g",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -92,7 +92,7 @@ const questions = [
     answers: ["Ice Cream Sandwich", "Jelly Bean", "Marshmallow", "Nougat"],
   },
   {
-    questionId: "h",
+    questionClass: "h",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -102,7 +102,7 @@ const questions = [
     answers: ["120", "160", "100", "140"],
   },
   {
-    questionId: "i",
+    questionClass: "i",
     category: "Science: Computers",
     type: "boolean",
     difficulty: "easy",
@@ -112,7 +112,7 @@ const questions = [
     answers: ["True", "False"],
   },
   {
-    questionId: "j",
+    questionClass: "j",
     category: "Science: Computers",
     type: "multiple",
     difficulty: "easy",
@@ -164,8 +164,15 @@ const formList = document.querySelectorAll("form")
 
 const radioButtonsArray = []
 
-// create and append radio buttons
+// create radio buttons and respective labels and create objects and push them in an array
 
+const createRadioButtons = () => {
+  for (let i = 0; i < questions.length; i++) {
+    for (let j = 0; j < questions[i].answers.length; j++) {}
+  }
+}
+
+/*
 for (let i = 0; i < questions.length; i++) {
   for (let j = 0; j < questions[i].answers.length; j++) {
     const radioButton = `<input type="radio" id=${
@@ -176,8 +183,10 @@ for (let i = 0; i < questions.length; i++) {
     formList[i].innerHTML += radioButton
   }
 }
-
+*/
 //Get final score
+
+/*
 
 const getFinalScore = () => {
   for (let i = 0; i < formList.length; i++) {
@@ -190,7 +199,7 @@ const getFinalScore = () => {
   }
   alert(`You got ${score} out of ${questions.length}`)
 }
-
+*/
 // IF YOU ARE DISPLAYING ALL THE QUESTIONS AT ONCE:
 // HINT: for each question, create a container with the "question"
 // create a radio button https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio with, as option the both the correct answer and the incorrect answers
