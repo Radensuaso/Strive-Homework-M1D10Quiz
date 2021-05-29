@@ -149,16 +149,22 @@ const questionContainersList = document.querySelectorAll(".question-containers")
 // create and append the questions to the containers
 
 for (let i = 0; i < questions.length; i++) {
-  const questionH2 = document.createElement("h2")
-  questionH2.innerText = "Question: " + questions[i].question
+  const questionH2 = document.createElement("h3")
+  questionH2.innerText = questions[i].question
   questionContainersList[i].appendChild(questionH2) // creating h2 element with the question
 
   const radioButtonsForm = document.createElement("form")
   questionContainersList[i].appendChild(radioButtonsForm) //Append form to put the radio buttons
 }
 
-// create and append radio buttons
+// get the form list in an array
 const formList = document.querySelectorAll("form")
+
+//Initialize an array of objects to push the radio buttons the labels so they can be randomized
+
+const radioButtonsArray = []
+
+// create and append radio buttons
 
 for (let i = 0; i < questions.length; i++) {
   for (let j = 0; j < questions[i].answers.length; j++) {
