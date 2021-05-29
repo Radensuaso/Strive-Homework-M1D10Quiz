@@ -178,12 +178,13 @@ for (let i = 0; i < questions.length; i++) {
     const createdInput = document.createElement("input") //create the input to be pushed
     createdInput.type = "radio"
     createdInput.name = questions[i].class
+    createdInput.id = questions[i].class + j
 
     const createdLabel = document.createElement("label") //create the label for each input
     createdLabel.htmlFor = questions[i].class
     createdLabel.innerText = questions[i].answers[j]
 
-    objectOfWithRadioButtonsToBePushed.radioButtons.push(createdInput)
+    objectOfWithRadioButtonsToBePushed.radioButtons.push(createdInput) // push the nodes inside the respective arrays
     objectOfWithRadioButtonsToBePushed.labels.push(createdLabel)
   }
 
@@ -193,36 +194,26 @@ for (let i = 0; i < questions.length; i++) {
 // randomize The answers order
 
 for (let i = 0; i < radioAndLabelsButtonsArray.length; i++) {
-  const radioButtonsArray = radioAndLabelsButtonsArray[i].radioButtons
-  const labelsArray = radioAndLabelsButtonsArray[i].labels
-  const randomIndex = []
+  const radioButtonsArray = radioAndLabelsButtonsArray[i].radioButtons // create a variable to store the array of radioButtons
+  const labelsArray = radioAndLabelsButtonsArray[i].labels // create a variable to store the array of labels
+  const randomIndex = [] // start an array to store the random order of the answers
   for (let j = 0; j < radioButtonsArray.length; j++) {
-    randomIndex.push(j)
+    randomIndex.push(j) // this is to change the size of the random order depending on the number of possible answers
   }
-  randomIndex.sort((a, b) => 0.5 - Math.random())
+  randomIndex.sort((a, b) => 0.5 - Math.random()) //randomize the order of the numbers
 
   for (let j = 0; j < radioButtonsArray.length; j++) {
-    formList[i].appendChild(radioButtonsArray[randomIndex[j]])
+    formList[i].appendChild(radioButtonsArray[randomIndex[j]]) // now we append a radio button and respective label according to random index
     formList[i].appendChild(labelsArray[randomIndex[j]])
   }
 }
 
-//Get final score
+// function to display one question ate a time
 
-/*
-
-const getFinalScore = () => {
-  for (let i = 0; i < formList.length; i++) {
-    const listOfNodesChildrenOfForm = formList[i].childNodes
-    if (
-      listOfNodesChildrenOfForm[listOfNodesChildrenOfForm.length - 3].checked
-    ) {
-      score++
-    }
-  }
-  alert(`You got ${score} out of ${questions.length}`)
+const displayOneAtTime = () => {
+  for (let i = 0; i < questionContainersList.length; i++) {}
 }
-*/
+
 // IF YOU ARE DISPLAYING ALL THE QUESTIONS AT ONCE:
 // HINT: for each question, create a container with the "question"
 // create a radio button https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio with, as option the both the correct answer and the incorrect answers
