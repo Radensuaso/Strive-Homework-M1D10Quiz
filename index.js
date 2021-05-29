@@ -162,37 +162,50 @@ const formList = document.querySelectorAll("form")
 
 //Initialize an array of objects to push the radio buttons the labels so they can be randomized
 
-const radioButtonsArray = []
+const radioAndLabelsButtonsArray = []
 
 // create radio buttons and respective labels and create objects and push them in an array
 
-const createRadioButtons = () => {
-  for (let i = 0; i < questions.length; i++) {
-    let objectOfWithRadioButtonsToBePushed = {
-      // initialize the object to be pushed
-      questionClass: questions[i].class,
-      radioButtons: [],
-      labels: [],
-    }
-
-    for (let j = 0; j < questions[i].answers.length; j++) {
-      const createdInput = document.createElement("input") //create the input to be pushed
-      createdInput.type = "radio"
-      createdInput.name = questions[i].class
-
-      const createdLabel = document.createElement("label") //create the label for each input
-      createdLabel.for = questions[i].class
-      createdLabel.innerText = questions[i].answers[j]
-
-      objectOfWithRadioButtonsToBePushed.radioButtons.push(createdInput) //push the radios and labels to the previous generated object
-      objectOfWithRadioButtonsToBePushed.labels.push(createdLabel)
-    }
-
-    radioButtonsArray.push(objectOfWithRadioButtonsToBePushed)
+for (let i = 0; i < questions.length; i++) {
+  const objectOfWithRadioButtonsToBePushed = {
+    // initialize the object to be pushed
+    questionClass: questions[i].class,
+    radioButtons: [],
+    labels: [],
   }
+
+  for (let j = 0; j < questions[i].answers.length; j++) {
+    const createdInput = document.createElement("input") //create the input to be pushed
+    createdInput.type = "radio"
+    createdInput.name = questions[i].class
+
+    const createdLabel = document.createElement("label") //create the label for each input
+    createdLabel.htmlFor = questions[i].class
+    createdLabel.innerText = questions[i].answers[j]
+
+    objectOfWithRadioButtonsToBePushed.radioButtons.push(createdInput)
+    objectOfWithRadioButtonsToBePushed.labels.push(createdLabel)
+  }
+
+  radioAndLabelsButtonsArray.push(objectOfWithRadioButtonsToBePushed)
 }
 
-createRadioButtons()
+// randomize The answers order
+
+for (let i = 0; i < radioAndLabelsButtonsArray.length; i++) {
+  const radioButtonsArray = radioAndLabelsButtonsArray[i].radioButtons
+  const labelsArray = radioAndLabelsButtonsArray[i].labels
+  const randomIndex = []
+  for (let j = 0; j < radioButtonsArray.length; j++) {
+    randomIndex.push(j)
+  }
+  randomIndex.sort((a, b) => 0.5 - Math.random())
+
+  for (let j = 0; j < radioButtonsArray.length; j++) {
+    formList[i].appendChild(radioButtonsArray[randomIndex[j]])
+    formList[i].appendChild(labelsArray[randomIndex[j]])
+  }
+}
 
 //Get final score
 
