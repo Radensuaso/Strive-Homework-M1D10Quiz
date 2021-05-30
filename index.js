@@ -111,8 +111,6 @@ const mainQuestionsContainer = document.querySelector(
 // User Score
 let score = 0
 
-window.onload = function () {}
-
 // create every question container
 
 for (const questionObj of questions) {
@@ -154,12 +152,12 @@ for (let i = 0; i < questions.length; i++) {
     labels: [],
   }
 
-  const createdCorrectInput = document.createElement("input") //create the input to be pushed
+  const createdCorrectInput = document.createElement("input") //create correct input
   createdCorrectInput.type = "radio"
   createdCorrectInput.id = questions[i].class + 0
   createdCorrectInput.name = questions[i].class
 
-  const createdCorrectLabel = document.createElement("label") //create the label for each input
+  const createdCorrectLabel = document.createElement("label") //create correct label
   createdCorrectLabel.htmlFor = questions[i].class
   createdCorrectLabel.innerText = questions[i].correct_answer
 
@@ -167,12 +165,12 @@ for (let i = 0; i < questions.length; i++) {
   objectOfWithRadioButtonsToBePushed.labels.push(createdCorrectLabel)
 
   for (let j = 0; j < questions[i].incorrect_answers.length; j++) {
-    const createdInput = document.createElement("input") //create the input to be pushed
+    const createdInput = document.createElement("input") //create incorrect inputs to be pushed
     createdInput.type = "radio"
     createdInput.id = questions[i].class + (j + 1)
     createdInput.name = questions[i].class
 
-    const createdLabel = document.createElement("label") //create the label for each input
+    const createdLabel = document.createElement("label") //create incorrect labels for each input
     createdLabel.htmlFor = questions[i].class
     createdLabel.innerText = questions[i].incorrect_answers[j]
 
@@ -208,28 +206,31 @@ questionContainersList[0].style.display = "block"
 const displayOneAtTime = () => {
   for (let i = 0; i < questionContainersList.length; i++) {
     if (questionContainersList[i].style.display === "block") {
-      questionContainersList[i].style.display = "none"
+      // We loop to find the div that has Display: block
+      questionContainersList[i].style.display = "none" // when we find the div with display: block, the same div goes to none
       if (i === questionContainersList.length - 1) {
-        document.querySelector("#next").style.display = "none"
+        document.querySelector("#next").style.display = "none" // here we find if we are in the last index we simply hide the next button and show submit
         document.querySelector("#submit").style.display = "block"
       } else {
-        questionContainersList[i + 1].style.display = "block"
+        questionContainersList[i + 1].style.display = "block" // else if we aren't in the last index of the containers we simply display the current question
       }
-      break
+      break // we have to break of the lllp whe we find the first display: block
     }
   }
 }
 
-// get final score
+// function to get final score to attach to submit button
 
 const getFinalScore = () => {
   for (const radioAndLabelObj of radioAndLabelsButtonsArray) {
+    // The arrays of inputs and labels inside the radioAndLabelsButtonsArray weren't randomized, jus their order in the page
     if (radioAndLabelObj.radioButtons[0].checked) {
-      score++
+      //we know that first element in the arrays of radioButtons inside the radioAndLabelsButtonsArray is the correct one
+      score++ // if it's checked increment the score by one
     }
   }
   console.log(score)
-  const finalScore = document.createElement("h2")
+  const finalScore = document.createElement("h2") // we create a h2 element to display the score
   finalScore.innerText = `Your Score is ${score} out of ${questions.length}.`
 
   document.querySelector("#main-questions-container").appendChild(finalScore)
