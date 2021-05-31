@@ -158,7 +158,7 @@ for (let i = 0; i < questions.length; i++) {
   createdCorrectInput.name = questions[i].class
 
   const createdCorrectLabel = document.createElement("label") //create correct label
-  createdCorrectLabel.htmlFor = questions[i].class
+  createdCorrectLabel.htmlFor = questions[i].class + 0
   createdCorrectLabel.innerText = questions[i].correct_answer
 
   objectOfWithRadioButtonsToBePushed.radioButtons.push(createdCorrectInput) // push the nodes inside the respective arrays
@@ -171,7 +171,7 @@ for (let i = 0; i < questions.length; i++) {
     createdInput.name = questions[i].class
 
     const createdLabel = document.createElement("label") //create incorrect labels for each input
-    createdLabel.htmlFor = questions[i].class
+    createdLabel.htmlFor = questions[i].class + (j + 1)
     createdLabel.innerText = questions[i].incorrect_answers[j]
 
     objectOfWithRadioButtonsToBePushed.radioButtons.push(createdInput) // push the nodes inside the respective arrays
