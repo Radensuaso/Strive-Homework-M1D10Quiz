@@ -1,20 +1,26 @@
 body {
-  background-color: burlywood;
+  background-color: #171745;
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 h1 {
   font-size: 4em;
+  color: aqua;
 }
 
 h2 {
   font-size: 2em;
+  color: #2a2a5e;
+}
+
+h3 {
+  color: #2a2a5e;
 }
 
 main {
-  background-color: cornsilk;
-  width: 60%;
+  background-color: #82c4d9;
+  width: 1000px;
   padding-top: 20px;
   padding-bottom: 20px;
   border-radius: 10px;
@@ -27,6 +33,13 @@ main {
 
 #submit {
   display: none;
+  color: #171745;
+  font-size: large;
+}
+
+#next {
+  color: #171745;
+  font-size: large;
 }
 
 .question-containers input {

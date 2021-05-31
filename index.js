@@ -232,8 +232,9 @@ const getFinalScore = () => {
   console.log(score)
   const finalScore = document.createElement("h2") // we create a h2 element to display the score
   finalScore.innerText = `Your Score is ${score} out of ${questions.length}.`
-
   document.querySelector("#main-questions-container").appendChild(finalScore)
+
+  document.querySelector("#submit").style.display = "none"
 }
 // IF YOU ARE DISPLAYING ALL THE QUESTIONS AT ONCE:
 // HINT: for each question, create a container with the "question"
